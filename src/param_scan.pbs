@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -N curve_balance
+#PBS -q janus-debug
+#PBS -l walltime=00:10:00
+#PBS -l nodes=2:ppn=12
+#PBS -j oe
+#PBS -o output-$PBS_JOBNAME-$PBS_JOBID
+
+. /curc/tools/utils/dkinit
+reuse Moab
+reuse Torque
+reuse anaconda
+
+cd $PBS_O_WORKDIR
+
+python -m scoop param_scan.py
+
+
+
